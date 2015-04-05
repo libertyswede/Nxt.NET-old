@@ -1,0 +1,7 @@
+﻿- Verifiera vilka parameters som är required och vilka som är optional.
+  1) Få skiten att funka i ett nät, där vi är snälla och tillåter allt.
+  2) Sätt allt som required, töm db och börja om.
+  3) Det kommer smälla lite här och där, kolla upp de värdena hur de hanteras i Java-klienten och gör likadant (antagligen optional).
+- Implementera processBock & processTransactions
+- Använd Convert.safeAdd() där det behövs
+- Trådsäkring!

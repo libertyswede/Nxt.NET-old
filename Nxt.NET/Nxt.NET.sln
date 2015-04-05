@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nxt.NET", "Nxt.NET\Nxt.NET.csproj", "{F153AC3D-0D8F-4A6A-8328-87EA3A78E8DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NxtConsole", "NxtConsole\NxtConsole.csproj", "{EEE5993E-8C6B-45C5-8EB2-B98D018F9D9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nxt.NETTest", "Nxt.NETTest\Nxt.NETTest.csproj", "{F49DEB2E-3437-4EC4-8D0C-E141747EA63B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F153AC3D-0D8F-4A6A-8328-87EA3A78E8DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F153AC3D-0D8F-4A6A-8328-87EA3A78E8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F153AC3D-0D8F-4A6A-8328-87EA3A78E8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F153AC3D-0D8F-4A6A-8328-87EA3A78E8DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEE5993E-8C6B-45C5-8EB2-B98D018F9D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEE5993E-8C6B-45C5-8EB2-B98D018F9D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEE5993E-8C6B-45C5-8EB2-B98D018F9D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEE5993E-8C6B-45C5-8EB2-B98D018F9D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F49DEB2E-3437-4EC4-8D0C-E141747EA63B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F49DEB2E-3437-4EC4-8D0C-E141747EA63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F49DEB2E-3437-4EC4-8D0C-E141747EA63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F49DEB2E-3437-4EC4-8D0C-E141747EA63B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,82 @@
+Sqlite version:
+
+CREATE TABLE IF NOT EXISTS transaction 
+(
+	id INTEGER NOT NULL,
+	deadline INTEGER NOT NULL,
+	sender_public_key BLOB NOT NULL,
+	recipient_id INTEGER NOT NULL,
+	amount INTEGER NOT NULL,
+	FEE INTEGER NOT NULL,
+	height INTEGER NOT NULL,
+	block_id INTEGER NOT NULL,
+	signature BLOB NOT NULL, 
+	timestamp INTEGER NOT NULL, 
+	block_timestamp INTEGER NOT NULL,
+	type INTEGER NOT NULL, 
+	subtype INTEGER NOT NULL, 
+	sender_id INTEGER NOT NULL, 
+	full_hash BLOB NOT NULL,
+	referenced_transaction_full_hash BLOB,
+	attachment_bytes BLOB,
+	FOREIGN KEY (block_id) REFERENCES block (rowid) ON DELETE CASCADE
+)
+
+CREATE UNIQUE INDEX IF NOT EXISTS transaction_id_idx ON transaction (id)
+CREATE UNIQUE INDEX IF NOT EXISTS transaction_full_hash_idx ON transaction (full_hash)
+CREATE INDEX IF NOT EXISTS transaction_timestamp_idx ON transaction (timestamp)
+CREATE INDEX IF NOT EXISTS transaction_sender_id_idx ON transaction (sender_id)
+CREATE INDEX IF NOT EXISTS transaction_recipient_id_idx ON transaction (recipient_id)
+
+Java stuff:
+
+CREATE TABLE IF NOT EXISTS transaction 
+(
+	db_id INT IDENTITY, 
+	id BIGINT NOT NULL, 
+	deadline SMALLINT NOT NULL, 
+	sender_public_key BINARY(32) NOT NULL, 
+	recipient_id BIGINT NOT NULL, 
+	amount INT NOT NULL, 
+	fee INT NOT NULL, 
+	referenced_transaction_id BIGINT, 
+	index INT NOT NULL, 
+	height INT NOT NULL, 
+	block_id BIGINT NOT NULL, 
+	FOREIGN KEY (block_id) REFERENCES block (id) ON DELETE CASCADE, 
+	signature BINARY(64) NOT NULL, 
+	timestamp INT NOT NULL, 
+	type TINYINT NOT NULL, 
+	subtype TINYINT NOT NULL, 
+	sender_account_id BIGINT NOT NULL, 
+	attachment OTHER
+)
+
+CREATE UNIQUE INDEX IF NOT EXISTS transaction_id_idx ON transaction (id)
+CREATE INDEX IF NOT EXISTS transaction_timestamp_idx ON transaction (timestamp)
+CREATE INDEX IF NOT EXISTS transaction_sender_account_id_idx ON transaction (sender_account_id)
+CREATE INDEX IF NOT EXISTS transaction_recipient_id_idx ON transaction (recipient_id)
+ALTER TABLE transaction ALTER COLUMN sender_account_id RENAME TO sender_id
+ALTER INDEX transaction_sender_account_id_idx RENAME TO transaction_sender_id_idx
+ALTER TABLE transaction DROP COLUMN IF EXISTS index
+ALTER TABLE transaction ADD COLUMN IF NOT EXISTS block_timestamp INT
+--UPDATE transaction SET block_timestamp = (SELECT timestamp FROM block WHERE block.id = transaction.block_id)
+ALTER TABLE transaction ALTER COLUMN block_timestamp SET NOT NULL
+ALTER TABLE transaction ADD COLUMN IF NOT EXISTS hash BINARY(32)
+CREATE INDEX IF NOT EXISTS transaction_hash_idx ON transaction (hash)
+ALTER TABLE transaction ALTER COLUMN amount BIGINT
+ALTER TABLE transaction ALTER COLUMN fee BIGINT
+--UPDATE transaction SET amount = amount * " + Constants.ONE_NXT + " WHERE height <= " + Constants.NQT_BLOCK
+--UPDATE transaction SET fee = fee * " + Constants.ONE_NXT + " WHERE height <= " + Constants.NQT_BLOCK
+ALTER TABLE transaction ADD COLUMN IF NOT EXISTS full_hash BINARY(32)
+ALTER TABLE transaction ADD COLUMN IF NOT EXISTS referenced_transaction_full_hash BINARY(32)
+--foreach tx: UPDATE transaction SET full_hash = ? WHERE id = ?
+ALTER TABLE transaction ALTER COLUMN full_hash SET NOT NULL
+CREATE UNIQUE INDEX IF NOT EXISTS transaction_full_hash_idx ON transaction (full_hash)
+--UPDATE transaction a SET a.referenced_transaction_full_hash = (SELECT full_hash FROM transaction b WHERE b.id = a.referenced_transaction_id)
+ALTER TABLE transaction ADD COLUMN IF NOT EXISTS attachment_bytes VARBINARY
+--foreach tx: UPDATE transaction SET attachment_bytes = ? where db_id = ?
+ALTER TABLE transaction DROP COLUMN attachment
+--UPDATE transaction a SET a.referenced_transaction_full_hash = (SELECT full_hash FROM transaction b WHERE b.id = a.referenced_transaction_id) WHERE a.referenced_transaction_full_hash IS NULL
+ALTER TABLE transaction DROP COLUMN referenced_transaction_id
+ALTER TABLE transaction DROP COLUMN hash

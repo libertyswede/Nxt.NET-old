@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F153AC3D-0D8F-4A6A-8328-87EA3A78E8DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nxt.NET</RootNamespace>
+    <AssemblyName>Nxt.NET</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.92.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.92.0\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="AccountBalance.cs" />
+    <Compile Include="AccountContainer.cs" />
+    <Compile Include="AccountLease.cs" />
+    <Compile Include="Alias.cs" />
+    <Compile Include="AliasContainer.cs" />
+    <Compile Include="Block\ApplyBlockEventArgs.cs" />
+    <Compile Include="Block\BlockByteSerializer.cs" />
+    <Compile Include="Transaction\AliasAssignmentAttachment.cs" />
+    <Compile Include="Transaction\ArbitraryMessageAttachment.cs" />
+    <Compile Include="Transaction\EffectiveBalanceLeasingAttachment.cs" />
+    <Compile Include="Transaction\Types\AccountControl.cs" />
+    <Compile Include="Transaction\Types\AliasAssignment.cs" />
+    <Compile Include="Transaction\IAttachment.cs" />
+    <Compile Include="Block\BaseTargetCalculator.cs" />
+    <Compile Include="Block\BlockchainProcessor.cs" />
+    <Compile Include="Block\BlockchainScanner.cs" />
+    <Compile Include="Block\BlockFactory.cs" />
+    <Compile Include="Block\BlockGenerationSignatureVerifyer.cs" />
+    <Compile Include="Block\BlockParser.cs" />
+    <Compile Include="Block\BlockSignatureVerifyer.cs" />
+    <Compile Include="Block\BlockVerifyer.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Convert.cs" />
+    <Compile Include="Crypto\CryptoFactory.cs" />
+    <Compile Include="Crypto\Curve25519.cs" />
+    <Compile Include="Crypto\ReedSolomon.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Genesis.cs" />
+    <Compile Include="Crypto\Crypto.cs" />
+    <Compile Include="GuaranteedBalance.cs" />
+    <Compile Include="Block\NextBlocksProcessor.cs" />
+    <Compile Include="PeerRepository.cs" />
+    <Compile Include="Peer\DnsWrapper.cs" />
+    <Compile Include="Nxt.cs" />
+    <Compile Include="Peer\PeerAddressFetcher.cs" />
+    <Compile Include="Peer\PeerConnector.cs" />
+    <Compile Include="Peer\PeerContainer.cs" />
+    <Compile Include="Peer\PeerSaver.cs" />
+    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="Request\GetCumulativeDifficultyRequest.cs" />
+    <Compile Include="Request\GetMilestoneBlockIdsRequest.cs" />
+    <Compile Include="Request\GetMilestoneBlockIdsRequestFromLastBlock.cs" />
+    <Compile Include="Request\GetMilestoneBlockIdsRequestFromMilestoneBlock.cs" />
+    <Compile Include="Request\GetNextBlockIdsRequest.cs" />
+    <Compile Include="Request\ProcessBlockRequest.cs" />
+    <Compile Include="Request\ProcessTransactionsRequest.cs" />
+    <Compile Include="Response\GetNextBlockIdsResponse.cs" />
+    <Compile Include="Request\GetNextBlocksRequest.cs" />
+    <Compile Include="Request\AddQuoteConverter.cs" />
+    <Compile Include="Block\Block.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DbController.cs" />
+    <Compile Include="DbVersion.cs" />
+    <Compile Include="HttpClientFactory.cs" />
+    <Compile Include="HttpLogHandler.cs" />
+    <Compile Include="NxtException.cs" />
+    <Compile Include="Peer\Peer.cs" />
+    <Compile Include="Response\GetCumulativeDifficultyResponse.cs" />
+    <Compile Include="Response\GetMilestoneBlockIdsResponse.cs" />
+    <Compile Include="Response\GetNextBlocksResponse.cs" />
+    <Compile Include="Response\GetPeersResponse.cs" />
+    <Compile Include="Response\GetInfoResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BlockRepository.cs" />
+    <Compile Include="Request\BaseRequest.cs" />
+    <Compile Include="Request\GetPeersRequest.cs" />
+    <Compile Include="Request\GetInfoRequest.cs" />
+    <Compile Include="Request\GetUnconfirmedTransactionsRequest.cs" />
+    <Compile Include="Response\GetUnconfirmedTransactionsResponse.cs" />
+    <Compile Include="Response\ProcessBlockResponse.cs" />
+    <Compile Include="Transaction\Types\ArbitraryMessage.cs" />
+    <Compile Include="Transaction\Types\EffectiveBalanceLeasing.cs" />
+    <Compile Include="Transaction\Types\Messaging.cs" />
+    <Compile Include="Transaction\Types\OrdinaryPayment.cs" />
+    <Compile Include="Transaction\Types\Payment.cs" />
+    <Compile Include="Transaction\Transaction.cs" />
+    <Compile Include="Transaction\TransactionByteSerializer.cs" />
+    <Compile Include="Transaction\TransactionFactory.cs" />
+    <Compile Include="Transaction\TransactionParser.cs" />
+    <Compile Include="Transaction\TransactionProcessor.cs" />
+    <Compile Include="TransactionRepository.cs" />
+    <Compile Include="Transaction\TransactionsChecksumCalculator.cs" />
+    <Compile Include="Transaction\TransactionSignatureVerifyer.cs" />
+    <Compile Include="Transaction\Types\TransactionType.cs" />
+    <Compile Include="Transaction\TransactionTypeFactory.cs" />
+    <Compile Include="Transaction\TransactionVerifyer.cs" />
+    <Compile Include="Transaction\UnconfirmedTransactionApplier.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Todo.txt" />
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
